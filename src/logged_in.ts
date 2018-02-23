@@ -11,8 +11,18 @@ export interface ILoggedInOpts {
  * @param {Function} fn - Next function in request chain
  * @param {Object} opts - Additional options. Optional
  * @param {String} opts.message - Alternative message if user is not logged in.
+ * @example
+ * ```javascript
+ * import serve, {response} from '@aexol/syncano-middleware'
+ * import {loggedIn} from '@aexol/syncano-middleware-common'
  *
- * @return {Object}
+ * async function hello(ctx, syncano) {
+ *     return response.success({message: `Hello, ${ctx.meta.user.username}`)
+ * }
+ *
+ * export default ctx => serve(ctx, loggedIn(hello))
+ * ```
+ * @returns {Object}
  * @public
  */
 export function loggedIn( fn: HandlerFn,

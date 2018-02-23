@@ -8,7 +8,7 @@
     "prepare": "npm run build",
     "prepack": "npm run test && npm run docs",
     "test": "jest",
-    "docs": "doxdox 'lib/**/*.js' --layout markdown --output DOCUMENTATION.md"
+    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
   },
   "repository": {
     "type": "git",
@@ -29,8 +29,8 @@
     "@types/jest": "^22.1.3",
     "@types/lodash.get": "^4.4.3",
     "@types/node-fetch": "^1.6.7",
-    "doxdox": "^2.0.3",
     "jest": "^22.4.2",
+    "jsdoc-to-markdown": "^4.0.1",
     "ts-jest": "^22.0.4",
     "ts-node": "^5.0.0",
     "tslint": "^5.9.1",

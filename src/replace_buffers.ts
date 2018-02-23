@@ -27,7 +27,18 @@ function defaultReplace(b: Buffer,
  * Unless, replaceFn was set, this middleware replaces all buffers with it's
  * string content in place. Modifies ctx.args.
  *
- * @return {Object}
+ * @example
+ * ```javascript
+ * import serve, {response} from '@aexol/syncano-middleware'
+ * import {replaceBuffers} from '@aexol/syncano-middleware-common'
+ *
+ * async function hello(ctx, syncano) {
+ *     return response.success({message: `Hello, ${ctx.meta.user.username}`)
+ * }
+ *
+ * export default ctx => serve(ctx, replaceBuffers(hello))
+ * ```
+ * @returns {Object}
  * @public
  */
 export function replaceBuffers( fn: HandlerFn,

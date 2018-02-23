@@ -14,7 +14,18 @@ export interface IRootAccount {
  * @param {String} opts.message - Custom error message if not root account.
  * @param {Function} opts.condFn - Check for root only if function evaluates to true.
  *
- * @return {Object}
+ * @example
+ * ```javascript
+ * import serve, {response} from '@aexol/syncano-middleware'
+ * import {rootAccount} from '@aexol/syncano-middleware-common'
+ *
+ * async function hello(ctx, syncano) {
+ *     return response.success({message: `Hello, ${ctx.meta.user.username}`)
+ * }
+ *
+ * export default ctx => serve(ctx, rootAccount(hello))
+ * ```
+ * @returns {Object}
  * @public
  */
 export function rootAccount(fn: HandlerFn,
