@@ -90,7 +90,7 @@ import serve, {response} from '@aexol/syncano-middleware'
 import {replaceBuffers} from '@aexol/syncano-middleware-common'
 
 async function hello(ctx, syncano) {
-    return response.success({message: `Hello, ${ctx.meta.user.username}`)
+    return response.success({message: 'ok})
 }
 
 export default ctx => serve(ctx, replaceBuffers(hello))
@@ -116,7 +116,7 @@ import serve, {response} from '@aexol/syncano-middleware'
 import {rootAccount} from '@aexol/syncano-middleware-common'
 
 async function hello(ctx, syncano) {
-    return response.success({message: `Hello, ${ctx.meta.user.username}`)
+    return response.success({message: `Hello, ${ctx.meta.admin.email}`)
 }
 
 export default ctx => serve(ctx, rootAccount(hello))
