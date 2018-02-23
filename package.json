@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Collection of common middlewares for syncano sockets.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "rm -rf lib && tsc",
     "prepare": "npm run build",
