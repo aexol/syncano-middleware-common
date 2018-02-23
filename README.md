@@ -90,7 +90,7 @@ import serve, {response} from '@aexol/syncano-middleware'
 import {replaceBuffers} from '@aexol/syncano-middleware-common'
 
 async function hello(ctx, syncano) {
-    return response.success({message: 'ok})
+    return response.success({message: 'ok'})
 }
 
 export default ctx => serve(ctx, replaceBuffers(hello))
