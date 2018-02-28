@@ -1,4 +1,4 @@
-import { HandlerFn } from '@aexol/syncano-middleware';
+import { HandlerFn, HandlerReturn } from '@aexol/syncano-middleware';
 import Server, { Context } from '@syncano/core';
 
 /**
@@ -22,5 +22,6 @@ export function toNumber(fn: HandlerFn, fields: string[]) {
         }
       }
     }
+    return fn(ctx, syncano);
   };
 }

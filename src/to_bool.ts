@@ -1,4 +1,4 @@
-import { HandlerFn } from '@aexol/syncano-middleware';
+import { HandlerFn, HandlerReturn  } from '@aexol/syncano-middleware';
 import Server, { Context } from '@syncano/core';
 
 /**
@@ -26,5 +26,6 @@ export function toBool(fn: HandlerFn, fields: string[]) {
         args[k] = false;
       }
     }
+    return fn(ctx, syncano);
   };
 }
