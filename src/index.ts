@@ -5,3 +5,5 @@
 export * from './logged_in';
 export * from './replace_buffers';
 export * from './root_acount';
+export * from './to_number';
+export * from './to_bool';

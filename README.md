@@ -35,6 +35,18 @@ npm install @aexol/syncano-middleware-common
 <dt><a href="#rootAccount">rootAccount(fn, opts)</a> ⇒ <code>Object</code></dt>
 <dd><p>Root account check middleware.</p>
 </dd>
+<dt><a href="#toBool">toBool(fn, fields)</a></dt>
+<dd><p>Attempts to cast certain fields in request to bool.
+Can be useful to handling both GET and POST input on endpoint
+as GET endpoints will always have a string.</p>
+<p>Fields that are either <code>true</code> or <code>&#39;true&#39;</code> will evaluate to true.
+Everything else will be considered false.</p>
+</dd>
+<dt><a href="#toNumber">toNumber(fn, fields)</a></dt>
+<dd><p>Attempts to cast certain fields in request to number.
+Can be useful to handling both GET and POST input on endpoint
+as GET endpoints will always have a string.</p>
+</dd>
 </dl>
 
 <a name="module_@aexol/syncano-middleware-common"></a>
@@ -121,3 +133,34 @@ async function hello(ctx, syncano) {
 
 export default ctx => serve(ctx, rootAccount(hello))
 ```
+<a name="toBool"></a>
+
+## toBool(fn, fields)
+Attempts to cast certain fields in request to bool.
+Can be useful to handling both GET and POST input on endpoint
+as GET endpoints will always have a string.
+
+Fields that are either `true` or `'true'` will evaluate to true.
+Everything else will be considered false.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| fn | <code>function</code> | Next function in chain |
+| fields | <code>Array</code> | fields to cast to bool |
+
+<a name="toNumber"></a>
+
+## toNumber(fn, fields)
+Attempts to cast certain fields in request to number.
+Can be useful to handling both GET and POST input on endpoint
+as GET endpoints will always have a string.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| fn | <code>function</code> | Next function in chain |
+| fields | <code>Array</code> | fields to cast to number |
+
