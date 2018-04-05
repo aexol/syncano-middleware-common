@@ -8,12 +8,6 @@ npm install @aexol/syncano-middleware-common
 
 ## Usage
 
-## Avilable middleware
-
-* loggedIn
-* rootAccount
-* replaceBuffers
-
 ## API Reference
 ## Modules
 
@@ -26,8 +20,14 @@ npm install @aexol/syncano-middleware-common
 ## Functions
 
 <dl>
+<dt><a href="#allowedMethods">allowedMethods(fn, allowed)</a> ⇒ <code>function</code></dt>
+<dd><p>Checks if request is allowed based on request method.</p>
+</dd>
 <dt><a href="#loggedIn">loggedIn(fn, opts)</a> ⇒ <code>Object</code></dt>
 <dd><p>Checks if user is logged in, returning response with 403 and message if not.</p>
+</dd>
+<dt><a href="#parseGETFields">parseGETFields(fn)</a> ⇒ <code>function</code></dt>
+<dd><p>Parses args in GET request as json if possible. If not, leaves them unchanged.</p>
 </dd>
 <dt><a href="#replaceBuffers">replaceBuffers(fn, opts)</a> ⇒ <code>Object</code></dt>
 <dd><p>Replace all buffers in socket args.</p>
@@ -54,6 +54,44 @@ as GET endpoints will always have a string.</p>
 ## @aexol/syncano-middleware-common
 Common middlewares for syncano.
 
+<a name="allowedMethods"></a>
+
+## allowedMethods(fn, allowed) ⇒ <code>function</code>
+Checks if request is allowed based on request method.
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| fn | <code>function</code> \| <code>Object</code> | Either next function in chain or object with  `key: value` pairs of method and handler function for method type. |
+| allowed | <code>Array</code> | List of allowed methods in case of fn being function. Optional. |
+
+**Example**  
+```javascript
+import serve, {response} from '@aexol/syncano-middleware'
+import {allowedMethods} from '@aexol/syncano-middleware-common'
+
+async function hello(ctx, syncano) {
+    return response.success({message: `Hello, ${ctx.meta.user.username}`)
+}
+
+export default ctx => serve(ctx, allowedMethods(hello, ['GET']))
+```
+**Example**  
+```javascript
+import serve, {response} from '@aexol/syncano-middleware'
+import {allowedMethods} from '@aexol/syncano-middleware-common'
+
+async function hello(ctx, syncano) {
+    return response.success({message: `Hello, ${ctx.meta.user.username}`)
+}
+
+export default ctx => serve(ctx, allowedMethods({
+ GET: hello,
+ POST: hello
+}))
+```
 <a name="loggedIn"></a>
 
 ## loggedIn(fn, opts) ⇒ <code>Object</code>
@@ -78,6 +116,29 @@ async function hello(ctx, syncano) {
 }
 
 export default ctx => serve(ctx, loggedIn(hello))
+```
+<a name="parseGETFields"></a>
+
+## parseGETFields(fn) ⇒ <code>function</code>
+Parses args in GET request as json if possible. If not, leaves them unchanged.
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| fn | <code>function</code> | Next function in request chain |
+
+**Example**  
+```javascript
+import serve, {response} from '@aexol/syncano-middleware'
+import {parseGETFields} from '@aexol/syncano-middleware-common'
+
+async function hello(ctx, syncano) {
+    return response.success({message: `Hello, ${ctx.meta.user.username}`)
+}
+
+export default ctx => serve(ctx, parseGETFields(hello))
 ```
 <a name="replaceBuffers"></a>
 
