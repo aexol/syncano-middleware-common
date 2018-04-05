@@ -1,6 +1,6 @@
 {
   "name": "@aexol/syncano-middleware-common",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Collection of common middlewares for syncano sockets.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
